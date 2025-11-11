@@ -1,18 +1,17 @@
-import { getServerSession } from 'next-auth'
-import { authOptions } from './auth'
+import { auth } from './auth'
 import { redirect } from 'next/navigation'
 
 export async function getSession() {
-  return await getServerSession(authOptions)
+  return await auth()
 }
 
 export async function getCurrentUser() {
-  const session = await getSession()
+  const session = await auth()
   return session?.user
 }
 
 export async function requireAuth() {
-  const session = await getSession()
+  const session = await auth()
   if (!session) {
     redirect('/auth/signin')
   }
@@ -20,7 +19,7 @@ export async function requireAuth() {
 }
 
 export async function requireAdmin() {
-  const session = await getSession()
+  const session = await auth()
   if (!session) {
     redirect('/auth/signin')
   }
@@ -31,7 +30,7 @@ export async function requireAdmin() {
 }
 
 export async function requireEditor() {
-  const session = await getSession()
+  const session = await auth()
   if (!session) {
     redirect('/auth/signin')
   }
