@@ -26,9 +26,10 @@ async function getProject(slug: string) {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }): Promise<Metadata> {
-  const project = await getProject(params.slug)
+  const { slug } = await params
+  const project = await getProject(slug)
 
   if (!project) {
     return {
@@ -47,8 +48,9 @@ export async function generateMetadata({
   }
 }
 
-export default async function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = await getProject(params.slug)
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const project = await getProject(slug)
 
   if (!project) {
     notFound()
