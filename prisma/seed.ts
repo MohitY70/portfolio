@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, PostStatus } from '@prisma/client'
 import { hash } from 'bcryptjs'
 
 const prisma = new PrismaClient()
@@ -49,7 +49,7 @@ npx create-next-app@latest my-app
 Next.js 14 is a game-changer for modern web development.`,
       coverUrl: '/images/blog/nextjs.jpg',
       tags: ['Next.js', 'React', 'Web Development'],
-      status: 'PUBLISHED',
+      status: PostStatus.PUBLISHED,
       publishedAt: new Date('2024-01-15'),
     },
     {
@@ -77,7 +77,7 @@ Tailwind CSS is a utility-first CSS framework that makes styling easy and mainta
 \`\`\``,
       coverUrl: '/images/blog/tailwind.jpg',
       tags: ['Tailwind CSS', 'CSS', 'Design'],
-      status: 'PUBLISHED',
+      status: PostStatus.PUBLISHED,
       publishedAt: new Date('2024-01-20'),
     },
     {
@@ -111,7 +111,7 @@ function getUser(id: string): Promise<User> {
 \`\`\``,
       coverUrl: '/images/blog/typescript.jpg',
       tags: ['TypeScript', 'Programming', 'Best Practices'],
-      status: 'PUBLISHED',
+      status: PostStatus.PUBLISHED,
       publishedAt: new Date('2024-02-01'),
     },
   ]
